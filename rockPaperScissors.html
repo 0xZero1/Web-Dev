@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors in JavaScript</title>
+</head>
+<body>
+  <script>
+  // Rock Paper Scissors Game
+  // Score:
+  let userScore = 0
+  let compScore = 0
+  // Get computer's choice
+
+  function getComputerChoice() {
+    roll = Math.floor(Math.random() * 3 + 1);
+    if (roll === 1) {
+      return 'rock'
+    } else if (roll === 2) {
+      return 'scissors'
+    } else if (roll === 3) {
+      return 'paper'
+    }
+  }
+
+  function getUserChoice() {
+    userChoice = prompt("Please input rock, paper, or scissors: ")
+    if (userChoice.toLowerCase() === 'rock' || 'paper' || 'scissors') {
+    return userChoice
+  } else {
+    getUserChoice()
+  }
+}
+
+  // Setup function for 1 round of Rock Paper Scissors
+  function playRound() {
+    computerSelection = getComputerChoice();
+    //console.log(computerSelection);
+    //Get user's choice
+    playerSelection = getUserChoice();
+    //console.log(playerSelection)
+    // Compare results
+    if (playerSelection === computerSelection) {
+      console.log("It's a Tie!");
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
+      userScore += 1
+      console.log("You chose Rock and I chose Scissors: You Win!")
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+      userScore += 1
+      console.log("You chose Paper and I chose Rock: You Win!")
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+      userScore += 1
+      console.log("You chose Scissors and I chose Paper: You Win!")
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
+      compScore += 1
+      console.log("You chose Rock and I chose Paper: You Lose this round.")
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+      compScore += 1
+      console.log("You chose Paper and I chose Scissors: You Lose this round.")
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+      compScore += 1
+      console.log("You chose Scissors and I chose Rock: You Lose this round.")
+    }
+  }
+
+  //const playerSelection = prompt("Please input Rock, Paper, or Scissors: ");
+  //const computerSelection = getComputerChoice;
+  //console.log(playRound());
+
+  function game() {
+    for (let i = 0; i < 5; i++) {
+      playRound();
+      console.log("User: " + userScore)
+      console.log("Computer: " + compScore)
+    }
+    if (userScore > compScore) {
+      console.log("Congratulations, you win! Play again?")
+    } else if (userScore < compScore) {
+      console.log("I win! Play again?")
+    } else {
+      console.log("It's a tie! Play again?")
+    }
+  }
+  game()
+  </script>
+</body>
+</html>
